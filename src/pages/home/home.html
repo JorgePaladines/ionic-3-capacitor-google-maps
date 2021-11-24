@@ -1,14 +1,39 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+<ion-header no-border>
+  <ion-toolbar>
+      <ion-navbar color="graydreal">
+          <ion-buttons left>
+          </ion-buttons>
+          <ion-buttons right>
+          </ion-buttons>
+      </ion-navbar>
+  </ion-toolbar>
+
+  <ion-toolbar>
+      <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()" placeholder="Escribe la dirección">
+      </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <div id="map" #map></div>
+
+  <ion-select class="front" absolute interface="popover" okText="Ok" cancelText="Cancelar" (ionChange)="changeMap($event)">
+    <ion-option value="MAP_TYPE_ROADMAP">ROADMAP</ion-option>
+    <ion-option value="MAP_TYPE_TERRAIN">TERRAIN</ion-option>
+    <ion-option value="MAP_TYPE_HYBRID">HYBRID</ion-option>
+    <ion-option value="MAP_TYPE_NORMAL">NORMAL</ion-option>
+    <ion-option value="MAP_TYPE_SATELLITE">SATELLITE</ion-option>
+  </ion-select>
+
+  <div absolute class="infoBox front">
+    <div padding>
+        <ion-textarea rows="3" margin-auto dark class="address-indicator" hidden>
+        </ion-textarea>
+    </div>
+    <p text-center>
+        <button ion-button>
+            <span>Confirmar Ubicación</span>
+        </button>
+    </p>
+  </div>
 </ion-content>
